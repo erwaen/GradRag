@@ -1,12 +1,19 @@
-FROM golang:1.23-alpine AS builder
+# fastapi docker
+FROM python:3.13.0-slim-bullseye  
+ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 1
+
 WORKDIR /app
+
+COPY ./entrypoint.sh ./entrypoint.sh
+COPY requirements.txt .
+
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
+
+
+RUN chmod +x ./entrypoint.sh
+
 COPY . .
-RUN go mod tidy
-RUN go build -o app
 
-FROM alpine:latest
-WORKDIR /root/
-COPY --from=builder /app/app .
-EXPOSE 8080
-CMD ["./app"]
-
+ENTRYPOINT ["./entrypoint.sh"]
