@@ -41,11 +41,13 @@ jobs:
 
       - name: Deploy to Azure Container Apps
         run: |
-          az containerapp up \
-                --resource-group GradRag \
-                --name crawler-containerapp \
-                --image gradragregistry.azurecr.io/gradrag-crawler:latest \
-                --ingress external \
-                --target-port 8000 \
-                --registry-username ${{ secrets.ACR_USERNAME }} \
-                --registry-password ${{ secrets.ACR_PASSWORD }} \
+          az containerapp create \
+            --resource-group GradRag \
+            --name crawler-containerapp \
+            --environment gradrag-env \
+            --image gradragregistry.azurecr.io/gradrag-crawler:latest \
+            --ingress external \
+            --target-port 8000 \
+            --registry-server gradragregistry.azurecr.io \
+            --registry-username ${{ secrets.ACR_USERNAME }} \
+            --registry-password ${{ secrets.ACR_PASSWORD }}
