@@ -46,9 +46,10 @@ jobs:
 
       - name: GRPC Example
         run: |
-          az containerapp compose create -f prod.yaml \
+          az containerapp compose create \
           --resource-group gradrag \
           --environment gradrag-env \
+          --compose-file-path "prod.yaml"
 
           URL=$(az containerapp show \
             --resource-group gradrag \
