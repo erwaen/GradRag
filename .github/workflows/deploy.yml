@@ -38,7 +38,7 @@ jobs:
             --resource-group gradragGroup \
             --name crawler-container\
             --image gradragregistry.azurecr.io/gradrag-crawler:latest \
-            --target-port 8000 \
-            --ingress external
+            # --target-port 8000 \
+            # --ingress external
             # --environment-variables key1=gradrag-env \
 
