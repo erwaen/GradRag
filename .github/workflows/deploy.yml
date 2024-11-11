@@ -32,10 +32,18 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      - name: Log in to Azure Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: gradragregistry.azurecr.io
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+
       - name: Deploy to Azure Container Apps
         run: |
           az container create \
-            --resource-group GradRag \
-            --name crawler-container \
-            --image gradragregistry.azurecr.io/gradrag-crawler:latest
-
+                --resource-group GradRag \
+                --name crawler-container \
+                --image gradragregistry.azurecr.io/gradrag-crawler:latest \
+                --registry-username ${{ secrets.ACR_USERNAME }} \
+                --registry-password ${{ secrets.ACR_PASSWORD }} \
