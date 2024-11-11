@@ -2,10 +2,5 @@ services:
   crawler:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfiles/prod/Dockerfile
     image: gradragregistry.azurecr.io/gradrag-crawler:latest # ACR repository
-    volumes:
-      - .:/app
-    command: uvicorn main:app --host 0.0.0.0 --port 8000
-    ports:
-      - 8000:8000
