@@ -37,7 +37,7 @@ jobs:
           az container create \
             --name crawler-container\
             --resource-group gradragGroup \
-            --environment gradragenv \
+            --environment gradrag-env \
             --image gradragregistry.azurecr.io/gradrag-crawler:latest \
             --target-port 8000 \
             --ingress external
