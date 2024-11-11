@@ -35,8 +35,8 @@ jobs:
       - name: Deploy to Azure Container Apps
         run: |
           az container create \
-            --resource-group gradragGroup \
-            --name crawler-container\
+            --resource-group GradRag \ 
+            --name crawler-container \
             --image gradragregistry.azurecr.io/gradrag-crawler:latest \
             # --target-port 8000 \
             # --ingress external
