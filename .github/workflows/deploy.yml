@@ -48,7 +48,6 @@ jobs:
         run: |
           az containerapp compose create \
           --resource-group gradrag \
-          --name crawler-containerapp \
           --environment gradrag-env \
 
           URL=$(az containerapp show \
