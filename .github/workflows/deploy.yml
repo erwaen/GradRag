@@ -21,8 +21,8 @@ jobs:
 
       - name: Build and push images to ACR
         run: |
-          docker compose -f prod.yml build
-          docker compose -f prod.yml push
+          docker compose -f prod.yaml build
+          docker compose -f prod.yaml push
   deploy:
     needs: build
     runs-on: ubuntu-latest
